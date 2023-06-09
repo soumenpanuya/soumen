@@ -5,6 +5,7 @@ const search = document.querySelectorAll(".btn")[1];
 const totalcount = document.getElementById("to-count");
 const completecount = document.getElementById("co-count");
 let taskarray = [];
+let editid='';
 
 add.onclick = (e) => {
   if (e.target.textContent == "add") {
@@ -49,6 +50,29 @@ function addtask() {
     renderlist();
   }
 }
+
+function deletetask(taskid) {
+  taskarray = taskarray.filter((task) => {
+    return task.id != taskid;
+  });
+  renderlist();
+}
+tasklist.onclick = (e) => {
+  if (e.target.parentElement.id == "delete") {
+    deletetask(e.target.parentElement.parentElement.id);
+  } else if (e.target.tagName == "LI") {
+    toggletask(e.target.id);
+  } else if (e.target.parentElement.id == "edit") {
+    add.textContent = "update";
+    search.textContent = "cancel";
+    search.classList.remove("search");
+
+    editid = e.target.parentElement.parentElement.id;
+    edittask(editid);
+  }
+};
+
+
 
 
 
