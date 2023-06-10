@@ -84,11 +84,11 @@ document.addEventListener('keyup',(e)=>{
 if(e.key == 'Enter'){
   if(add.textContent == 'add'){
   addtask();
-  }
-}else {
+  }else {
 updatetask();
 }
-})
+}
+});
 
 
 add.onclick = (e) => {
