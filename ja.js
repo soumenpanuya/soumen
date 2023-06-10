@@ -7,11 +7,6 @@ const completecount = document.getElementById("co-count");
 let taskarray = [];
 let editid='';
 
-add.onclick = (e) => {
-  if (e.target.textContent == "add") {
-    
-  addtask();
-}};
 
 function renderlist() {
   tasklist.innerHTML = "";
@@ -57,6 +52,44 @@ function deletetask(taskid) {
   });
   renderlist();
 }
+
+function edittask(text){
+input.value=text;
+}
+
+function updatetask(){
+taskarray.forEach((e)=>{
+if(e.id==editid){
+  e.text= input.value;
+  input.value='';
+  search.classList.add('search');
+  renderlist();
+}
+});
+  add.textContent='add';
+  editid='';
+};
+
+function toggletask(id){
+  taskarray.forEach((e)=>{
+  if(e.id == id){
+  e.done = !e.done;
+    renderlist();
+    return;
+  }
+  })
+}
+
+
+add.onclick = (e) => {
+  if (e.target.textContent == "add") {
+    
+  addtask();
+}else if(e.target.textContent == "update"){
+updatetask();
+}};
+
+
 tasklist.onclick = (e) => {
   if (e.target.parentElement.id == "delete") {
     deletetask(e.target.parentElement.parentElement.id);
@@ -68,17 +101,16 @@ tasklist.onclick = (e) => {
     search.classList.remove("search");
 
     editid = e.target.parentElement.parentElement.id;
-    edittask(editid);
+    edittask(e.target.parentElement.parentElement.textContent);
   }
 };
-function toggletask(id){
-  taskarray.forEach((e)=>{
-  if(e.id == id){
-  e.done = !e.done;
-    renderlist();
-    return;
-  }
-  })
+
+search.onclick=(e)=>{
+if(e.target.textContent=='cancel'){
+add.textContent='add';
+  input.value='';
+  search.classList.add('search');
+}
 }
 
 
