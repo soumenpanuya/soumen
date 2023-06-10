@@ -113,6 +113,17 @@ add.textContent='add';
 }
 }
 
+document.addEventListener('keyup',(e)=>{
+if(e.key=='Enter'){
+if(add.textContent=='add'){
+addtask();
+}else if(add.textContent=='update'){
+updatetask();
+}
+}
+});
+
+
 
 
 
