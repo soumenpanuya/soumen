@@ -81,7 +81,11 @@ function toggletask(id){
 }
 
 document.addEventListener("keyup",(e)=>{
-console.log(e.key)
+if(e.key=='Enter'){
+if(add.textContent=='add'){
+console.log('add aya');
+}
+}
 
 })
 
