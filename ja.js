@@ -80,7 +80,15 @@ function toggletask(id){
   })
 }
 
-
+document.addEventListener('keyup',(e)=>{
+if(e.key == 'Enter'){
+  if(add.textContent == 'add'){
+    addtask();
+  }else{
+  updatetask();
+  }
+}
+});
 
 add.onclick = (e) => {
   if (e.target.textContent == "add") {
