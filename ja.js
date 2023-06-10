@@ -42,6 +42,7 @@ function addtask() {
     };
     taskarray.splice(0, 0, task);
     input.value = "";
+    savedata();
     renderlist();
   }
 }
@@ -50,6 +51,7 @@ function deletetask(taskid) {
   taskarray = taskarray.filter((task) => {
     return task.id != taskid;
   });
+  savedata();
   renderlist();
 }
 
@@ -63,7 +65,9 @@ if(e.id==editid){
   e.text= input.value;
   input.value='';
   search.classList.add('search');
+  savedata();
   renderlist();
+  return;
 }
 });
   add.textContent='add';
@@ -74,6 +78,7 @@ function toggletask(id){
   taskarray.forEach((e)=>{
   if(e.id == id){
   e.done = !e.done;
+    savedata();
     renderlist();
     return;
   }
@@ -121,6 +126,19 @@ add.textContent='add';
   search.classList.add('search');
 }
 }
+
+function savedata(){
+let str = JSON.stringify(taskarray);
+  localStorage.setItem('data',str);
+}
+function renderdata(){
+let list=localStorage.getItem('data');
+  taskarray=JSON.parse(list);
+  renderlist();
+}
+
+renderdata();
+
 
 
 
