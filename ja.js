@@ -71,6 +71,15 @@ tasklist.onclick = (e) => {
     edittask(editid);
   }
 };
+function toggletask(id){
+  taskarray.forEach((e)=>{
+  if(e.id == id){
+  e.done = !e.done;
+    renderlist();
+    return;
+  }
+  })
+}
 
 
 
